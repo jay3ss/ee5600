@@ -1,0 +1,56 @@
+A review of linear algebra terms.
+
+Consider an n-dimensional linear space $\mathbb{R}^n$. Every vector in
+$\mathbb{R}^n$ is an n-tuple of reals:
+
+\begin{equation} \label{eq:n_tuple}
+X =
+\begin{bmatrix}
+  x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}
+\end{equation}
+
+\subsubsection{Linear Independence}
+
+Let $V$ be a set of vectors
+
+\begin{equation} \label{eq:set_of_vectors}
+V = \{ X_1, \, \\ X_2, \, \\ \ldots, \, \\ X_n \} \in \mathbb{R}^n
+\end{equation}
+
+\noindent whose element vectors are \textit{linearly dependent} if
+
+\begin{equation}
+  \exists \, \alpha_1, \alpha_2, \ldots, \alpha_n \neq 0
+\end{equation}
+
+\noindent such that
+
+\begin{equation} \label{eq:linear_combo}
+\alpha_1 X_1 + \alpha_2 X_2 + \ldots + \alpha_n X_n = 0
+\end{equation}
+
+This means that a set of vectors $V$ is linearly dependent if they can be
+composed of some combination of each other. We can take this definition and turn
+it around to find that a set of vectors $V$ is \textit{linearly independent} if
+Equation \ref{eq:linear_combo} is satisfied only when
+$\alpha_1 \, = \, \alpha_2 \, = \, \ldots \, = \, \alpha_n \, = \, 0$.
+
+\subsubsection{Basis}
+
+A set of n linearly independent vectors in $\mathbb{R}^n$ is a \textit{basis}
+if every vector in $\mathbb{R}^n$ can be expressed as a unique combination
+of this set (i.e., span the space). \textbf{Note:} in $\mathbb{R}^n$, any set of
+n linear independent vectors can be used as a basis.
+
+\subsubsection{Basis and Representation}
+
+Let $Q = \{q_1, q_2, \ldots, q_n \}$ be a set of linearly independent vectors in
+$\mathbb{R}^n$. Now, any vector, $X \, \in \, \mathbb{R}^n$, can be expressed
+as
+
+\begin{equation} \label{eq:linear_combo_vector}
+X = \alpha_1 q_1 + \alpha_2 q_2 + \ldots + \alpha_n q_n
+\end{equation}
+
+\noindent such that $\alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R}$.
