@@ -15,26 +15,26 @@ X =
 Let $V$ be a set of vectors
 
 \begin{equation} \label{eq:set_of_vectors}
-V = \{ X_1, \, \\ X_2, \, \\ \ldots, \, \\ X_n \} \in \mathbb{R}^n
+V = \{ X_1, \, \\ X_2, \, \\ \cdots, \, \\ X_n \} \in \mathbb{R}^n
 \end{equation}
 
 \noindent whose element vectors are \textit{linearly dependent} if
 
 \begin{equation}
-  \exists \, \alpha_1, \alpha_2, \ldots, \alpha_n \neq 0
+  \exists \, \alpha_1, \alpha_2, \cdots, \alpha_n \neq 0
 \end{equation}
 
 \noindent such that
 
 \begin{equation} \label{eq:linear_combo}
-\alpha_1 X_1 + \alpha_2 X_2 + \ldots + \alpha_n X_n = 0
+\alpha_1 X_1 + \alpha_2 X_2 + \cdots + \alpha_n X_n = 0
 \end{equation}
 
 This means that a set of vectors $V$ is linearly dependent if they can be
 composed of some combination of each other. We can take this definition and turn
 it around to find that a set of vectors $V$ is \textit{linearly independent} if
 Equation \ref{eq:linear_combo} is satisfied only when
-$\alpha_1 \, = \, \alpha_2 \, = \, \ldots \, = \, \alpha_n \, = \, 0$.
+$\alpha_1 \, = \, \alpha_2 \, = \, \cdots \, = \, \alpha_n \, = \, 0$.
 
 \subsubsection{Basis}
 
@@ -45,12 +45,47 @@ n linear independent vectors can be used as a basis.
 
 \subsubsection{Basis and Representation}
 
-Let $Q = \{q_1, q_2, \ldots, q_n \}$ be a set of linearly independent vectors in
+Let $Q = \{q_1, q_2, \cdots, q_n \}$ be a set of linearly independent vectors in
 $\mathbb{R}^n$. Now, any vector, $X \, \in \, \mathbb{R}^n$, can be expressed
 as
 
 \begin{equation} \label{eq:linear_combo_vector}
-X = \alpha_1 q_1 + \alpha_2 q_2 + \ldots + \alpha_n q_n
+X = \alpha_1 q_1 + \alpha_2 q_2 + \cdots + \alpha_n q_n
 \end{equation}
 
-\noindent such that $\alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R}$.
+\noindent such that $\alpha_1, \alpha_2, \cdots, \alpha_n \in \mathbb{R}$.
+
+Assume that
+
+\begin{align}
+  Q &= \{q_1, q_2, \cdots, q_n \} \, \in \mathbb{R}^n \times \mathbb{R}^n, \quad \text{then} \\
+  X &= Q [\alpha_1 \; \alpha_2 \; \cdots \; \alpha_n]^T \\
+    &= Q \overline{X}
+\end{align}
+
+\noindent where $\overline{X} = [\alpha_1 \; \alpha_2 \; \cdots \; \alpha_n]^T$
+and is the \textit{representation} of $X$ with respect to the the basis $Q$.
+
+\noindent \textbf{Question:} Consider svector $X, q_1, q_2 \in \mathbb{R}^2$
+such that
+
+\begin{align}
+  X   &= [1 \quad 3]^T \\
+  q_1 &= [3 \quad 1]^T \\
+  q_1 &= [2 \quad 2]^T
+\end{align}
+
+\noindent \textbf{a)} Do $q_1$ and $q_2$ form a basis in $\mathbb{R}^2$?
+
+\noindent \textbf{b)} If so, find the representatino of $X$ with respect to the
+basis formed by $q_1$ and $q_2$.
+
+\subsubsection{Orthonormal Basis}
+
+An \textit{orthonormal basis} is a basis in which the basis vectors are
+orthogonal to each other and has a unit length. For every $\mathbb{R}^n$ we can
+associate the following orthonormal basis
+
+\begin{equation}
+
+\end{equation}
