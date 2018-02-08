@@ -218,3 +218,9 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# temp files
+*~
+
+# vim swap files 
+*.swp
