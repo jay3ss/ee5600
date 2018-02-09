@@ -77,7 +77,7 @@ such that
 
 \noindent \textbf{a)} Do $q_1$ and $q_2$ form a basis in $\mathbb{R}^2$?
 
-\noindent \textbf{b)} If so, find the representatino of $X$ with respect to the
+\noindent \textbf{b)} If so, find the representation of $X$ with respect to the
 basis formed by $q_1$ and $q_2$.
 
 \subsubsection{Orthonormal Basis}
@@ -103,5 +103,195 @@ i_n =
 \end{bmatrix}
 \end{align}
 
+\noindent \textbf{Note:} two vectors $x_1$ and $x_2$ are orthogonal if $x_1^T \cdot x_2 = 0$
+or $x_2^T \cdot x_1 = 0$ and a vector is normal if $x^T \cdot x = 1$
+
 \noindent \textbf{Question:} If $X = [x_1 \; x_2 \; \cdots \; x_n]^T$, what is
 the representation of $X$ with respect to the orthonormal basis?
+
+\subsubsection{Norm of a Vector}
+Any real-valued function of $X$ can be defined as a \textit{norm} if theem
+following properties are satisfied
+
+\begin{enumerate}
+  \item $\norm{X}^2 \, \geq 0 \quad \forall X \text{ and } \norm{X} \, = 0 \, \text{ iff } \, X = 0$
+  \item $\norm{\alpha X} = \abs{\alpha} \norm{X} \quad \forall X , \quad X \in \mathbb{R}$
+  \item $\norm{X_1 + X_2} \leq \norm{X_1} + \norm{X_2} \quad \forall X_1, X_2$
+\end{enumerate}
+
+\noindent Note that item number 3 is the triangle inequality.
+
+\subparagraph{Examples of Norms}
+
+\begin{equation}
+  \text{Let} \quad X = [x_1 \, x_2 \, \cdots \, x_n]
+\end{equation}
+
+\begin{enumerate}
+  \item $L_1 \; \text{norm} \equiv \norm{X}_1 = \mathlarger{\sum_{i=1}^{n}} \abs{x_i}$
+  \item $L_1 \; \text{norm} \equiv \norm{X}_2 = \sqrt{\mathlarger{\sum_{i=1}^{n}} x_i^2}$
+  \item $L_1 \; \text{norm} \equiv \norm{X}_p = \Bigg[\mathlarger{\sum_{i=1}^{n}} x_i^2\Bigg]^{\frac{1}{p}}$
+  \item $L_1 \; \text{norm} \equiv \norm{X}_{\infty} = max_i \, \abs{x_i}$
+\end{enumerate}
+
+\noindent \textbf{Question}
+
+\noindent Let $X = \begin{bmatrix}2 & 4\end{bmatrix}^T$. Find
+
+\begin{enumerate}
+  \item $L_1 \, \text{norm}(X)$
+  \item $L_2 \, \text{norm}(X)$
+  \item $L_{\infty} \, \text{norm}(X)$
+\end{enumerate}
+
+\subsection{Gram-Schmidt Process of Orthogonalization}
+
+Given a set of $m$ linearly independent vectors $\{e_1, \, e_2, \, \cdots, \, e_m\}$,
+an orthonormal set can be obtained by using the following procedure
+
+\begin{enumerate}
+  \item $u_1 = e_1, \quad q_1 = \dfrac{u_1}{\norm{u_1}}$
+  \item $u_2 = e_2 - (q_1^T e_2), \quad q_2 = \dfrac{u_2}{\norm{u_2}}$ \\
+  \vdots \\
+  \item $u_m = e_m - \mathlarger{\sum_{k=1}^{m-1}}(q_1^T \, e_2)\, q_k$
+\end{enumerate}
+
+\noindent Note that the vectors $\{e_1, \, e_2, \, \cdots, \, e_m\}$ are not
+necessarily orthonormal.
+
+\subsection{Similarity Transformation}
+
+Let $X = Q \bar{X}$ where $Q = \{q_1,\,  q_2, \cdots, \, q_n \}$ and is a set of
+basis vectors and $\bar{X}$ is the representation of $X$ with respect to $Q$.
+Consider
+
+\begin{equation} \label{eq:sim_trans_init}
+  AX = Y
+\end{equation}
+
+\noindent If we write Equation \ref{eq:sim_trans_init} with respect to the basis
+$Q$, then we get
+
+\begin{align}
+  \bar{A} \bar{X} &= \bar{Y} \label{eq:y_wrt_q} \\
+  X &= Q \bar{X} \\
+  Y &= Q \bar{Y} \\
+  A \, Q \, \bar{X} &= Q \, \bar{Y} \label{eq:temp_step}\\
+  Q^{-1} \, A \, Q \, \bar{X} &= \bar{Y}
+\end{align}
+
+By examination of Equations \ref{eq:y_wrt_q} and \ref{eq:temp_step}, we can see
+that
+
+\begin{equation} \label{eq:similarity_matrix}
+  \bar{A} = Q^{-1} \, A \, Q
+\end{equation}
+
+\noindent where $\bar{A}$ is the similarity matrix of $A$ with respect to $Q$.
+
+\subsubsection{Eigenvalues and Eigenvectors}
+
+Suppose
+
+\begin{equation}
+  A \, X = \lambda \, X
+\end{equation}
+
+Now, if we solve the equation
+
+\begin{align}
+  \lambda \, X - A \, X &= 0 \\
+  (\lambda \, I - A) \, X &= 0
+\end{align}
+
+\noindent which leads to a singular matrix
+
+\begin{equation} \label{eq:singular_eigenstep}
+  \lambda \, I - A = 0
+\end{equation}
+
+If we take the determinant of Equation \ref{eq:singular_eigenstep}
+
+\begin{equation} \label{eq:eign_char_poly}
+  \Delta(\lambda) = \abs{\lambda \, I - A} = 0
+\end{equation}
+
+\noindent which is the characteristic polynomial of degree $n$.
+
+\noindent \textbf{Question:} Find the eigenvectors and values of $A$
+
+\begin{equation}
+  A =
+  \begin{bmatrix}
+     2 & 7 \\
+    -1 & -6
+  \end{bmatrix}
+\end{equation}
+
+\subsection{Different Cases of Eigenvalues}
+
+\noindent \textbf{Case 1}: All eigenvalues are distinct
+
+For an $n \times n$ matrix $A$ with distince eigenvalues
+$\lambda_1, \, \lambda_2, \cdots, \lambda_n$ which are all real and distinct.
+Then $A \, q_i = \lambda_i \, q_i$, where $q_i$ is the equivalent eigenvector
+associated with $\lambda_i$. Now, $Q = \{q_1, q_2, \cdots, q_n \}$ can be used
+as a basis and
+
+\begin{equation}
+  \bar{A} \text{ (or } \hat{A} \text{)} =
+  \begin{bmatrix}
+    \lambda_1 & 0 & \cdots & 0 \\
+    0 & \lambda_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_n \\
+  \end{bmatrix}
+\end{equation}
+
+\noindent which is the representation of $A$ with respect to $Q$ (which is
+composed of the eigenvectors of $A$). Every matrix with distinct eigenvalues
+has a diagonal representation using its eigenvectors as a basis.
+
+\begin{equation} \label{eq:sim_trans_eigen}
+  \hat{A} = Q^{-1} \, A \, Q
+\end{equation}
+
+\noindent \textbf{Case 2}: All eigenvalues are \textit{not} distinct, the
+representation is instead in \textit{Jordan form}.
+
+
+\subsection{Range Space}
+
+The \textit{range space} of a matrix $A$ is all possible combinations of the
+columns of $A$.
+
+\subsection{Rank}
+
+The \textit{rank} of a matrix $A$ is the dimension of the range space of $A$, or
+the number of independent columns of $A$.
+
+\subsection{Null Vector}
+
+The \textit{null vector} of a matrix $A$ is a vector $X$ such that $AX=0$.
+
+\subsection{Null Space}
+
+The \textit{null space} of a matrix $A$ is the set off all the null vectors of
+$A$.
+
+\subsection{Nullity}
+
+The \textit{nullity} of a matrix $A$ is the dimension of the null space of $A$,
+or the number of columns of $A$ minus the rank of $A$.
+
+\subsection{Determinant of a Matrix}
+
+The determinant of a matrix
+
+\begin{equation}
+  A =
+  \begin{bmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+  \end{bmatrix}
+\end{equation}
