@@ -7,7 +7,13 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{subfiles}
+\usepackage{siunitx}
+\usepackage{float}
+
+\graphicspath{ {img/} } % path to images
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -25,6 +31,9 @@
 \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
+% better formatting of large fractions
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
 \begin{document}
 
 % --------------------------------------------------------------
@@ -39,9 +48,12 @@
 
 
 
-\newpage
-
-
+\subfile{question1} \newpage
+\subfile{question2} \newpage
+\subfile{question3} \newpage
+\subfile{question4} \newpage
+\subfile{question5} \newpage
+\subfile{question6} \newpage
 
 
 % --------------------------------------------------------------
