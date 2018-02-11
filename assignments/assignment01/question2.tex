@@ -1,3 +1,42 @@
 \begin{question}{2} %You can use theorem, exercise, problem, or question here.  Modify x.yz to be whatever number you are proving
-Find two orthonormal vectors that span the same space as two vectors in problem 1.
+Find two orthonormal vectors that span the same space as the two vectors, $x_1$ 
+and $x_2$, in Problem 1.
 \end{question}
+
+Equation \ref{eq:x_1_x_2_perp} shows is that the vectors $x_1$ and $x_2$ are
+orthogonal. Because $x_1$ and $x_2$ are orthogonal, they only need to be 
+normalized, as shown below in Equations \ref{eq:q2_norm_start} to
+\ref{eq:q2_norm_end}.
+
+\begin{equation} \label{eq:x_1_x_2_perp}
+  x_1^T \cdot x_2 = x_2^T \cdot x_1 = \mathbf{0}
+\end{equation}
+
+The normalization process, where $u_1$ and $u_2$ are the normalized versions of
+$x_1$ and $x_2$, respectively:
+
+\begin{align}
+  u_1 &= \dfrac{x_1}{\norm{x_1}}\label{eq:q2_norm_start} \\
+      &= \dfrac{x_1}{\sqrt{2^2 + (-3)^2 + (-1)^2}} \nonumber \\
+      &= \dfrac{x_1}{\sqrt{4 + 9 + 1}} \nonumber \\
+      &= \dfrac{x_1}{\sqrt{14}} \nonumber \\ \nonumber \\
+\mathbf{u_1} &= \begin{bmatrix} 
+          \dfrac{2}{\sqrt{14}} \nonumber \\
+          \dfrac{-1}{\sqrt{14}} \nonumber \\
+          \dfrac{-3}{\sqrt{14}}
+         \end{bmatrix} \nonumber \\
+  u_2 &= \dfrac{x_2}{\norm{x_2}} \nonumber \\
+      &= \dfrac{x_2}{\sqrt{1^2 + 1^2 + (-1)^2}} \nonumber \\
+      &= \dfrac{x_2}{\sqrt{1 + 1 + 1}} \nonumber \\
+      &= \dfrac{x_2}{\sqrt{3}} \nonumber \\ \nonumber \\
+\mathbf{u_2} &= \begin{bmatrix} 
+          \dfrac{1}{\sqrt{3}} \nonumber \\
+          \dfrac{1}{\sqrt{3}} \nonumber \\
+          \dfrac{-1}{\sqrt{3}}
+         \end{bmatrix} \\ \label{eq:q2_norm_end}
+\end{align}
+
+
+
+
+
