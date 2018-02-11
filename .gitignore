@@ -224,3 +224,6 @@ TSWLatexianTemp*
 
 # vim swap files 
 *.swp
+
+# ignore .ini files created by gedit
+*.ini
