@@ -13,6 +13,243 @@ The Cayley-Hamilton theorem can be used to compute powers of a matrix
 \cite{chen1998linear}. First, the eigenvalues of the matrix $A_1$ must be found.
 
 \begin{align}
-\abs{\mathbf{I}\lambda - A}
+\begin{vmatrix}
+{\mathbf{I}\lambda - A_1}
+\end{vmatrix} &= 
+  \begin{vmatrix}
+  \lambda -1 & -1 & 0 \\
+  0 & \lambda & -1 \\
+  0 & 0 & 1 - \lambda
+  \end{vmatrix} \nonumber \\
+  &= \lambda (\lambda - 1)^2 \nonumber \\
+\lambda &= 0, 1, 1
 \end{align}
+
+Now that the eigenvalues have been found, different powers of $A_1$ can be found
+by finding the $\beta_i$s in Equation \ref{eq:cayley_hamilton_scalar}
+
+\begin{equation}\label{eq:cayley_hamilton_scalar}
+  h(\lambda_i) = \beta_0 + \beta_1 \lambda_i + \beta_2 \lambda_i^2
+\end{equation}
+
+\noindent using the previously found eigenvalues each corresponding to a 
+$\lambda_i$ . There is a slight modification that needs to be made in order to 
+deal with the repeated eigenvalues. We can use a derivative of Equation 
+\ref{eq:cayley_hamilton_scalar} to allow us to solve for the coefficients
+
+\begin{equation}
+\frac{d h(\lambda_i)}{d\lambda_i} = \beta_1  + 2 \beta_2 \lambda_i
+\end{equation}
+
+\noindent Once we know our coefficients ($\beta_i$) we can use the following
+formula to find any power of $A_i$
+
+\begin{equation}\label{eq:cayley_hamilton_matrix}
+  h(A_1) = \beta_0 + \beta_1 A_1 + \beta_2 A_1^2
+\end{equation}
+
+\noindent \textbf{a)} Find $A_1^{10}$.
+
+Here, $h(\lambda_i) = \lambda_i^{10}$ and 
+$\dfrac{d h(\lambda_i)}{d\lambda_i} = 10 \lambda_i^9$. For $\lambda_i = 0$ 
+
+
+\begin{align}
+  (0)^{10} &= \beta_0 + \beta_1 (0) + \beta_2 (0)^2 \nonumber \\
+         0 &= \beta_0 
+\end{align}
+
+For $\lambda_i = 1$ using $h(\lambda_i)$
+
+
+\begin{align}
+  (1)^{10} &= \beta_0 + \beta_1 (1) + \beta_2 (1)^2 \nonumber \\
+         1 &= 0 + \beta_1 + \beta_2 \nonumber \\
+         1 &= \beta_1 + \beta_2
+\end{align}
+
+For $\lambda_i = 1$ using $\dfrac{d h(\lambda_i)}{d \lambda_i}$
+
+
+\begin{align}
+  10(1)^{9} &=  \beta_1 + 2 \beta_2 (1) \nonumber \\
+         10 &= 0 + \beta_1 + 2 \beta_2 \nonumber \\
+         10 &= \beta_1 + 2 \beta_2
+\end{align}
+
+And solving the system of equations we get
+
+\begin{align}
+  \beta_0 &= 0  \nonumber \\
+  \beta_1 &= -8 \\
+  \beta_2 &= 9  \nonumber
+\end{align}
+
+Now the matrix form of the Cayley-Hamilton theorm, 
+Equation \ref{eq:cayley_hamilton_matrix}, can be prepared, then utilized to find
+$A_1^{10}$
+
+\begin{align}
+  h(A_1)   &= \beta_0 + \beta_1 A_1 + \beta_2 A_1^2 \nonumber \\
+  A_1^{10} &= -8 A_1 + 9 A_1^2 \nonumber \\
+           &= -8 \begin{bmatrix} 
+                  1 & 1 & 0 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix} \nonumber
+              + 9 \begin{bmatrix} 
+                  1 & 1 & 0 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix}^2 \nonumber \\
+           &= -8 \begin{bmatrix} 
+                  1 & 1 & 0 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix} \nonumber
+              + 9 \begin{bmatrix} 
+                  1 & 1 & 1 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix} \nonumber \\
+           &= \mathbf{
+           \begin{bmatrix} 
+              1 & 1 & 9 \\ 
+              0 & 0 & 1 \\
+              0 & 0 & 1
+           \end{bmatrix}
+           } \nonumber \\
+\end{align}
+
+\noindent \textbf{b)} Find $A_1^{103}$
+
+Here $h(\lambda_i) = \lambda_i^{103}$, 
+$\dfrac{d h(\lambda_i)}{d \lambda_i} = 103 \lambda_i^{102}$, and 
+$h(A_1) = A_1^{103}$.
+
+For $\lambda_i = 0$
+
+\begin{align}
+  (0)^{103} &= \beta_0 + \beta_1 (0) + \beta_2 (0)^2 \nonumber \\
+         0  &= \beta_0 
+\end{align}
+
+For $\lambda_i = 1$ using $h(\lambda_i)$
+
+
+\begin{align}
+  (1)^{103} &= \beta_0 + \beta_1 (1) + \beta_2 (1)^2 \nonumber \\
+          1 &= 0 + \beta_1 + \beta_2 \nonumber \\
+          1 &= \beta_1 + \beta_2
+\end{align}
+
+For $\lambda_i = 1$ using $\dfrac{d h(\lambda_i)}{d \lambda_i}$
+
+
+\begin{align}
+  103(1)^{102} &=  \beta_1 + 2 \beta_2 (1) \nonumber \\
+           103 &= 0 + \beta_1 + 2 \beta_2 \nonumber \\
+           103 &= \beta_1 + 2 \beta_2
+\end{align}
+
+And solving the system of equations we get
+
+\begin{align}
+  \beta_0 &= 0  \nonumber \\
+  \beta_1 &= -101 \\
+  \beta_2 &= 102  \nonumber
+\end{align}
+
+Now the matrix form of the Cayley-Hamilton theorm, 
+Equation \ref{eq:cayley_hamilton_matrix}, can be prepared, then utilized to find
+$A_1^{103}$
+
+\begin{align}
+  h(A_1)   &= \beta_0 + \beta_1 A_1 + \beta_2 A_1^2 \nonumber \\
+  A_1^{10} &= -101 A_1 + 102 A_1^2 \nonumber \\
+           &= -101 \begin{bmatrix} 
+                  1 & 1 & 0 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix} \nonumber
+              + 102 \begin{bmatrix} 
+                  1 & 1 & 1 \\ 
+                  0 & 0 & 1 \\
+                  0 & 0 & 1
+                \end{bmatrix} \nonumber \\
+           &= \mathbf{
+           \begin{bmatrix} 
+              1 & 1 & 102 \\ 
+              0 & 0 & 1 \\
+              0 & 0 & 1
+           \end{bmatrix}
+           } \nonumber \\
+\end{align}
+
+
+\noindent \textbf{c)} Find $e^{A_1 t}$
+
+Here $h(\lambda_i) = e^{\lambda_i t}$, 
+$\dfrac{d h(\lambda_i)}{d \lambda_i} = te^{\lambda_i t}$, and 
+$h(A_1) = e^{A_1 t}$.
+
+For $\lambda_i = 0$
+
+\begin{align}
+  e^0 &= \beta_0 + \beta_1 (0) + \beta_2 (0)^2 \nonumber \\
+    1 &= \beta_0 
+\end{align}
+
+For $\lambda_i = 1$ using $h(\lambda_i)$
+
+
+\begin{align}
+  e^{(1)t} &= \beta_0 + \beta_1 (1) + \beta_2 (1)^2 \nonumber \\
+       e^t &= 1 + \beta_1 + \beta_2
+\end{align}
+
+For $\lambda_i = 1$ using $\dfrac{d h(\lambda_i)}{d \lambda_i}$
+
+
+\begin{align}
+  te^{(1)t} &= \beta_1 + 2 \beta_2 (1) \nonumber \\
+       te^t &= \beta_1 + 2 \beta_2
+\end{align}
+
+And solving the system of equations we get
+
+\begin{align}
+  \beta_0 &= 1  \nonumber \\
+  \beta_1 &= e^t (2 - t) \\
+  \beta_2 &= e^t (t -1) + 1 \nonumber
+\end{align}
+
+Now the matrix form of the Cayley-Hamilton theorm, 
+Equation \ref{eq:cayley_hamilton_matrix}, can be prepared, then utilized to find
+$A_1^{103}$
+
+\begin{align}
+  h(A_1)   &= \beta_0 + \beta_1 A_1 + \beta_2 A_1^2 \nonumber \\
+  A_1^{10} &= 1 \mathbb{I} + e^t (2 - t) A_1 + [e^t (t -1) + 1] A_1^2 \nonumber \\
+           &= \mathbb{I}
+              + \begin{bmatrix} 
+                  e^t (2 - t) & e^t (2 - t) & 0 \\ 
+                  0 & 0 & e^t (2 - t) \\
+                  0 & 0 & e^t (2 - t)
+                \end{bmatrix} \nonumber
+              + \begin{bmatrix} 
+                  e^t (t -1) + 1 & e^t (t -1) + 1 & e^t (t -1) + 1 \\ 
+                  0 & 0 & e^t (t -1) + 1 \\
+                  0 & 0 & e^t (t -1) + 1
+                \end{bmatrix} \nonumber \\
+           &= \mathbf{
+           \begin{bmatrix} 
+              e^t + 2 & e^t + 1 & e^t + 1 \\ 
+              0 & 1 & e^t + 1 \\
+              0 & 0 & e^t + 2
+           \end{bmatrix}
+           } \nonumber \\
+\end{align}
+
+
 
