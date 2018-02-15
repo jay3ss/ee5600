@@ -96,3 +96,12 @@ With $U(s) = \dfrac{1}{s}$ and Equations \label{eq:laplace_output_tf} and
 \end{equation}
 
 \noindent \textbf{b)} Using the Cayley-Hamilton theorem.
+
+The general solution for a linear time-invariant (LTI) system is
+
+\begin{equation} \label{eq:lti_gen_sol}
+  X(t) = e^{At}X(0) + \int_0^{\infty} e^{-A(\tau -t)} B U(\tau) d \tau
+\end{equation}
+
+\noindent Using the Cayley-Hamilton theorem, $e^{-At}$ and $e^{-A(\tau - t)}$
+can be found.
