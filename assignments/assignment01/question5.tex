@@ -1,0 +1,98 @@
+\begin{question}{5}
+Find the unit-step response of the following system using two different methods.
+\begin{align}
+\dot{X}(t) =
+  \begin{bmatrix}
+       0 &  1 \\
+      -2 & -2
+  \end{bmatrix}
+    X(t) +
+  \begin{bmatrix}
+    1 \\ 1
+  \end{bmatrix}
+  u(t) \nonumber
+\end{align}
+
+\begin{equation} \label{eq:ssr_output}
+y(t) = \begin{bmatrix} 2 & 3\end{bmatrix}X(t)
+\end{equation}
+
+[Note: I'm going to be assuming that initial conditions are all zero.]
+\end{question}
+
+\noindent \textbf{a)} Using the Laplace Transform.
+
+\begin{equation} \label{eq:laplace_ssr}
+Y(s) = [C (s\mathbb{I} - A)^{-1} B + D] U(s)
+\end{equation}
+
+Equation \ref{eq:laplace_ssr} gives the Laplace Transform of the output
+equation, Equation \ref{eq:ssr_output}, where
+
+\begin{equation}
+ A =
+ \begin{bmatrix}
+      0 &  1 \\
+     -2 & -2
+ \end{bmatrix}, \quad
+ B =
+ \begin{bmatrix}
+   1 \\ 1
+ \end{bmatrix}, \quad
+ C = \begin{bmatrix} 2 & 3\end{bmatrix}, \quad
+ D = 0 \nonumber
+\end{equation}
+
+If we simplify Equation \ref{eq:laplace_ssr}, we arrive at
+
+\begin{equation} \label{eq:laplace_output_tf}
+Y(s) = T(s) U(s) \nonumber
+\end{equation}
+
+\noindent where
+
+\begin{align}
+  T(s) &= C (s\mathbb{I} - A)^{-1} B + D \nonumber \\
+       &=
+       \begin{bmatrix}
+        2 & 3
+       \end{bmatrix}
+       \begin{bmatrix}
+        s & -1 \\
+        2 & s + 2
+      \end{bmatrix}^{-1}
+      \begin{bmatrix}
+       1 \\ 1
+      \end{bmatrix} \nonumber \\
+      &=
+      \begin{bmatrix}
+       2 & 3
+      \end{bmatrix}
+      \Bigg(\frac{1}{s^2 + 2s + 2} \Bigg)
+      \begin{bmatrix}
+       s + 2 & 1 \\
+       -2     & s
+      \end{bmatrix}
+      \begin{bmatrix}
+       1 \\ 1
+      \end{bmatrix} \nonumber \\
+      &= \frac{5s}{s^2 + 2s + 2} \label{eq:laplace_tf}
+\end{align}
+
+With $U(s) = \dfrac{1}{s}$ and Equations \label{eq:laplace_output_tf} and
+\label{eq:laplace_tf} we have
+
+\begin{align}
+  Y(s) &= \frac{5s}{s^2 + 2s + 2} \cdot \frac{1}{s} \nonumber \\
+       &= \frac{5}{s^2 + 2s + 2} \nonumber \\
+       &= \frac{5}{(s + 1)^2 + 1} \label{eq:laplace_ys}
+\end{align}
+
+\noindent and by taking the inverse Laplace Transform of Equation
+\ref{eq:laplace_ys}, we finally arrive at
+
+\begin{equation}
+  y(t) = 5e^{-t} \sin (t)
+\end{equation}
+
+\noindent \textbf{b)} Using the Cayley-Hamilton theorem.
