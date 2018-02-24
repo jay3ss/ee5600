@@ -1,0 +1,94 @@
+\begin{question}{6}
+Are the two sets of state-space equations
+
+\begin{align}
+  \dot{X}(t) &=
+  \begin{bmatrix}
+    2 & 2 & 1 \\
+    0 & 2 & 2 \\
+    0 & 0 & 1
+  \end{bmatrix} X(t)
+  +
+  \begin{bmatrix}
+    1 \\ 1 \\ 0
+  \end{bmatrix}
+  u(t),
+  \quad
+  y(t) =
+  \begin{bmatrix}
+    1 & -1 & 0
+  \end{bmatrix} \label{eq:q6_sys_a}
+  \\ \nonumber \\
+  \dot{X}(t) &=
+  \begin{bmatrix}
+    2 & 1 &  1 \\
+    0 & 2 &  1 \\
+    0 & 0 & -1
+  \end{bmatrix} X(t)
+  +
+  \begin{bmatrix}
+    1 \\ 1 \\ 0
+  \end{bmatrix}
+  u(t),
+  \quad
+  y(t) =
+  \begin{bmatrix}
+    1 & -1 & 0
+  \end{bmatrix} \label{eq:q6_sys_b}
+\end{align}
+\noindent equivalent? Zero-state equivalent?
+\end{question}
+
+\noindent \textbf{a)} For equivalence, we must show that the $A$ matrix of both
+systems have the same eigenvalues.
+
+Starting with the system given by Equation \ref{eq:q6_sys_a}, the eigenvalues
+are
+
+\begin{align}
+  [s \mathbb{I} - A]^{-1} &=
+  \begin{bmatrix}
+    s-2 & -1  & -2 \\
+    0   & s-2 & -2 \\
+    0   & 0   & s-1
+  \end{bmatrix} \label{eq:q6_sys_a_inv} \\
+  &= (s-2)^2 (s-1) \nonumber \\
+  &= 0 \nonumber \\
+  \therefore
+  \lambda_{1,2,3} &= 2, 2, 1 \label{eq:q6_sys_a_ev}
+\end{align}
+
+\noindent and the eigenvalues for the system given by Equation \ref{eq:q6_sys_b}
+are
+
+\begin{align}
+  [s \mathbb{I} - A]^{-1} &=
+  \begin{bmatrix}
+    s-2 & -1  & -1 \\
+    0   & s-2 & -1 \\
+    0   & 0   & s+1
+  \end{bmatrix} \label{eq:q6_sys_b_inv} \\
+  &= (s-2)^2 (s+1) \nonumber \\
+  &= 0 \nonumber \\
+  \therefore
+  \lambda_{1,2,3} &= 2, 2, -1 \label{eq:q6_sys_b_ev}
+\end{align}
+
+Equations \ref{eq:q6_sys_a_ev} and \ref{eq:q6_sys_b_ev} show that the
+eigenvalues of the two systems are different. Therefore, the two sets of
+state-space equations are not equivalent.
+
+\noindent \textbf{b)} For zero-state equivalence, we must show that the two sets
+of state-space equations have the same transfer matrix. The transfer matrix is
+given by
+
+\begin{equation} \nonumber
+  \dfrac{Y(s)}{U(s)} = C[s\mathbb{I}-A]^{-1}B + D
+\end{equation}
+
+The $C$, $B$, and $D$ are the same for both systems which means in order for the
+two sets of state-space equations to be zero-state equivalent then the
+$[s\mathbb{I}-A]^{-1}$ must be equivalent. As is shown in Equations
+\ref{eq:q6_sys_a_inv} and \ref{eq:q6_sys_b_inv}, these two matrices are
+\textit{not} the same. Therefore, the two sets of state-space equations are not
+zero-state equivalent.
