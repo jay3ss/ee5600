@@ -91,7 +91,7 @@ With $U(s) = \dfrac{1}{s}$ and Equations \label{eq:laplace_output_tf} and
 \noindent and by taking the inverse Laplace Transform of Equation
 \ref{eq:laplace_ys}, we finally arrive at
 
-\begin{equation}
+\begin{equation} \label{eq:5_solved_laplace}
   y(t) = 5e^{-t} \sin (t)
 \end{equation}
 
@@ -100,8 +100,93 @@ With $U(s) = \dfrac{1}{s}$ and Equations \label{eq:laplace_output_tf} and
 The general solution for a linear time-invariant (LTI) system is
 
 \begin{equation} \label{eq:lti_gen_sol}
-  X(t) = e^{At}X(0) + \int_0^{\infty} e^{-A(\tau -t)} B U(\tau) d \tau
+  X(t) = e^{At}X(0) + \int_0^{\infty} e^{A(t - \tau)} B U(\tau) d \tau
 \end{equation}
 
-\noindent Using the Cayley-Hamilton theorem, $e^{-At}$ and $e^{-A(\tau - t)}$
-can be found.
+\noindent Using the Cayley-Hamilton theorem, $e^{At}$ can be found. First, the
+eigenvalues must be determined.
+
+\begin{align}
+  \begin{vmatrix}
+    \lambda \mathbb{I} - A
+  \end{vmatrix} \nonumber
+  &=
+  \begin{vmatrix}
+    \lambda & -1 \\
+    2       & \lambda + 2
+  \end{vmatrix} \\
+  &= \lambda (\lambda + 2) - 2 (-1) \nonumber \\
+  &= \lambda^2 + 2 \lambda + 2 = 0 \nonumber \\
+  \therefore \lambda_{1,2} &= -1 \pm j \label{eq:q5_lambda}
+\end{align}
+
+% \label{eq:cayley_hamilton_sol_x}
+\begin{equation}
+  \text{let} \quad
+  f(\lambda) = e^{\lambda t} =
+  h(\lambda) = \beta_0 + \beta_1 \lambda
+\end{equation}
+
+\noindent Plugging in the values for $\lambda_1$ and $\lambda_2$ we arrive at
+
+\begin{align}
+  e^{t(-1 + j)} &= \beta_0 + \beta_1 (-1 + j) \nonumber \\
+  e^{t(-1 - j)} &= \beta_0 + \beta_1 (-1 - j)  \nonumber
+\end{align}
+
+Solving the above system yields
+
+\begin{align}
+  \beta_0 &= e^{-t} \sin t \label{eq:q5_beta0} \\
+  \beta_1 &= e^{-t}(\cos t + \sin t) \label{eq:q5_beta1}
+\end{align}
+
+\noindent By the Cayley-Hamilton theorem, $h(\lambda) \mapsto h(A)$ and
+$f(\lambda) \mapsto f(A)$ which yields
+
+\begin{align}
+h(A) &= \beta_0 \mathbb{I} + \beta_1 A \nonumber \\
+     &=
+   \begin{bmatrix}
+     e^{-t} [\cos t + \sin t] & e^{-t} \sin t \\
+     -2 e^{-t} \sin t & e^{-t} [\cos t - \sin t]
+   \end{bmatrix} \nonumber \\
+f(A) &= e^{At} \nonumber \\
+f(A) &= h(A) \nonumber \\
+e^{At} &=
+   \begin{bmatrix}
+     e^{-t} [\cos t + \sin t] & e^{-t} \sin t \\
+     -2 e^{-t} \sin t & e^{-t} [\cos t - \sin t]
+   \end{bmatrix}
+\end{align}
+
+By solving Equation \ref{eq:y_state_space_gen} the solution to the system will be
+found.
+
+\begin{equation} \label{eq:y_state_space_gen}
+  y(t) = \int_{0}^{t} C e^{A(t-\tau)} B U(\tau) d \tau
+\end{equation}
+
+\noindent Simplifying the integrand of Equation \ref{eq:y_state_space_gen} gives
+
+\begin{align} \label{eq:5_solved_cayley_hamilton}
+  y(t) &= \int_{0}^{t} 5e^{-(t-\tau)} (\cos(t-\tau) - \sin(t-\tau)) d \tau \nonumber \\
+  y(t) &= 5e^{-t} \sin(t)
+\end{align}
+
+\noindent By comparing Equations \ref{eq:5_solved_laplace} and
+\ref{eq:5_solved_cayley_hamilton}, we can see that they are the same.
+
+
+% To make calculations a bit easier,
+
+% The equation for $e^{-A(t - \tau)}$ is found by substituting $t = t - \tau$ as
+% shown in Equation \ref{eq:e_attau}.
+%
+% \begin{equation}\label{eq:e_attau}
+%   e^{A(t - \tau)} =
+%        \begin{bmatrix}
+%          e^{-(t - \tau)} [\cos (t - \tau) + \sin (t - \tau)] & e^{-(t - \tau)} \sin (t - \tau) \\
+%          -2 e^{-(t - \tau)} \sin (t - \tau) & e^{-(t - \tau)} [\cos (t - \tau) - \sin (t - \tau)]
+%        \end{bmatrix}
+% \end{equation}
