@@ -1,0 +1,935 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\rightmargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+EE5600 - Homework 2
+\end_layout
+
+\begin_layout Author
+Joshua Saunders
+\end_layout
+
+\begin_layout Section*
+Question 1
+\end_layout
+
+\begin_layout Standard
+A robot-arm drive system for one joint can be represented by the differential
+ equation 
+\begin_inset Formula 
+\[
+\frac{dv\left(t\right)}{dt}=\text{−}k_{1}v\left(t\right)\text{−}k_{2}y\left(t\right)+k_{3}i\left(t\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $v\left(t\right)=$
+\end_inset
+
+ velocity, 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ = position, and 
+\begin_inset Formula $i\left(t\right)$
+\end_inset
+
+ is the control-motor current (Hint: 
+\begin_inset Formula $i\left(t\right)=u\left(t\right)$
+\end_inset
+
+).
+ Put the equations in state variable form and set up the matrix form for
+ 
+\begin_inset Formula $k_{1}=k_{2}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+x_{1}= & \,y\\
+x_{2}= & \,v=\dot{y}
+\end{align*}
+
+\end_inset
+
+Therefore,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{x}_{1}= & \,x{}_{2}\\
+\dot{x}_{2}= & -x_{1}-x_{2}+k_{3}u\\
+\text{or}\\
+X\left(t\right)= & \left[\begin{array}{cc}
+0 & 1\\
+-1 & -1
+\end{array}\right]\left[\begin{array}{c}
+x_{1}\left(t\right)\\
+x_{2}\left(t\right)
+\end{array}\right]+\left[\begin{array}{c}
+0\\
+1
+\end{array}\right]u\left(t\right)\\
+y\left(t\right)= & \left[\begin{array}{cc}
+1 & 0\end{array}\right]\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Question 2
+\end_layout
+
+\begin_layout Standard
+The state-space representation of a dynamical system is given as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\dot{X}\left(t\right)= & AX\left(t\right)+BU\left(t\right)\label{eq:prob2_x_dot}\\
+Y\left(t\right)= & CX\left(t\right)+DU\left(t\right)\label{eq:prob2_yt_init}
+\end{align}
+
+\end_inset
+
+Prove that: 
+\begin_inset Formula 
+\[
+Y(t)=C\left[Φ\left(t\right)X\left(0\right)+\int_{0}^{t}Φ\left(t−τ\right)BU\left(τ\right)dτ\right]+DU\left(t\right)
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $Φ\left(t\right)=e^{At}$
+\end_inset
+
+ is the fundamental or state transition matrix.
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+First we must find the Laplace transform of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:prob2_x_dot"
+
+\end_inset
+
+ and solve for 
+\begin_inset Formula $X\left(s\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+sX\left(s\right)-X\left(0\right)= & AX\left(s\right)+BU\left(s\right)\nonumber \\
+sX\left(s\right)-AX\left(s\right)= & X\left(0\right)+BU\left(s\right)\nonumber \\
+\left[s\mathbb{I}-A\right]X\left(s\right)= & X\left(0\right)+BU\left(s\right)\nonumber \\
+X\left(s\right)= & \left[s\mathbb{I}-A\right]^{-1}\left[X\left(0\right)+BU\left(s\right)\right]\nonumber \\
+X\left(s\right)= & \left[s\mathbb{I}-A\right]^{-1}X\left(0\right)+\left[s\mathbb{I}-A\right]BU\left(s\right)\label{eq:prob2_xs}
+\end{align}
+
+\end_inset
+
+Next, find the inverse Laplace transform of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:prob2_xs"
+
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{align}
+X\left(t\right)=\, & e^{At}X\left(0\right)+\int_{0}^{t}e^{A\left(t-\tau\right)}BU\left(\tau\right)d\tau\nonumber \\
+=\, & \text{Φ}\left(t\right)X\left(0\right)+\int_{0}^{t}\text{Φ}\left(t-\tau\right)BU\left(\tau\right)d\tau\label{eq:prob2_xt_phi}
+\end{align}
+
+\end_inset
+
+Where 
+\begin_inset Formula $\text{Φ}\left(t\right)=e^{At}$
+\end_inset
+
+.
+ Substituting Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:prob2_xt_phi"
+
+\end_inset
+
+ into Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:prob2_yt_init"
+
+\end_inset
+
+ yields
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boxed{Y(t)=C\left[\text{Φ}\left(t\right)X\left(0\right)+\int_{0}^{t}\text{Φ}\left(t\text{−}τ\right)BU\left(τ\right)dτ\right]+DU\left(t\right)}
+\]
+
+\end_inset
+
+as required.
+\end_layout
+
+\begin_layout Section*
+Question 3
+\end_layout
+
+\begin_layout Standard
+Problem 2.1
+\end_layout
+
+\begin_layout Standard
+Consider the memoryless systems with characteristics shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob_2_01_fig"
+
+\end_inset
+
+, in which 
+\begin_inset Formula $u$
+\end_inset
+
+ denotes the input and 
+\begin_inset Formula $y$
+\end_inset
+
+ the input.
+ Which of the is a linear system? is it possible to introduce a new output
+ so that the system in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob_2_01_fig"
+
+\end_inset
+
+ (b) is linear?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/prob2_01.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Three different memoryless systems
+\begin_inset CommandInset label
+LatexCommand label
+name "prob_2_01_fig"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Solution
+\end_layout
+
+\begin_layout Subsubsection*
+a)
+\end_layout
+
+\begin_layout Standard
+The equation for the system is 
+\begin_inset Formula $y=mx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f\left(ax_{1}+bx_{2}\right)= & m\left(ax_{1}+bx_{2}\right)\\
+= & amx_{1}+bmx_{2}\\
+= & af\left(x_{1}\right)+bf\left(x_{2}\right)\\
+\therefore\, & \,\text{linear}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+b)
+\end_layout
+
+\begin_layout Standard
+The equation for the system is 
+\begin_inset Formula $y=mx+b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f\left(ax_{1}\right)= & m\left(ax_{1}\right)+b\\
+= & amx_{1}+b\\
+\neq & af\left(x_{1}\right)\\
+\therefore\, & \,\text{not linear}
+\end{align*}
+
+\end_inset
+
+This system can be linearized by adding an offset of 
+\begin_inset Formula $-b$
+\end_inset
+
+ which will change the equation of the system to 
+\begin_inset Formula $y=mx$
+\end_inset
+
+ which is the same as in (a), which is linear.
+\end_layout
+
+\begin_layout Subsubsection*
+c)
+\end_layout
+
+\begin_layout Standard
+The equation for the system is 
+\begin_inset Formula $y=m\left(x\right)x$
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{align*}
+f\left(x_{1}+x_{2}\right)= & m\left(x_{1}+x_{2}\right)\left(x_{1}+x_{2}\right)\\
+= & m\left(x_{1}+x_{2}\right)x_{1}+m\left(x_{1}+x_{2}\right)x_{2}\\
+\therefore\, & \,\text{not linear}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Question 4
+\end_layout
+
+\begin_layout Standard
+Problem 2.3
+\end_layout
+
+\begin_layout Standard
+Consider a system whose input 
+\begin_inset Formula $u$
+\end_inset
+
+ and output 
+\begin_inset Formula $y$
+\end_inset
+
+ are related by
+\begin_inset Formula 
+\[
+y\left(t\right)=\left(P_{\alpha}u\right)\left(t\right)=\begin{cases}
+u\left(t\right) & \text{for }t\leq\alpha\\
+0 & \text{for }t>\alpha
+\end{cases}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is a fixed constant.
+ The system is called a 
+\emph on
+truncation operation
+\emph default
+, which chops off the input after time 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Is the system linear? Is it time-invariant? Is it causal?
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Subsubsection*
+a)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left(P_{\alpha}\left(au_{1}+bu_{2}\right)\right)\left(t\right)= & au_{1}\left(t\right)+bu_{2}\left(t\right)\\
+= & a\left(P_{\alpha}u_{1}\right)\left(t\right)+b\left(P_{\alpha}u_{2}\right)\left(t\right)\\
+\therefore\, & \,\text{linear}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+The system is 
+\series bold
+causal
+\series default
+ because 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ only depends on the current value of 
+\begin_inset Formula $t$
+\end_inset
+
+, not future or past values.
+\end_layout
+
+\begin_layout Subsubsection*
+c)
+\end_layout
+
+\begin_layout Standard
+The system is 
+\series bold
+not time-invariant
+\series default
+.
+ 
+\begin_inset Formula $\text{\left(P_{\alpha}u\right)\left(t\right)\neq\left(P_{\beta}u\right)\left(t\right)}$
+\end_inset
+
+ unless 
+\begin_inset Formula $\alpha=\beta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section*
+Question 5
+\end_layout
+
+\begin_layout Standard
+Problem 2.6
+\end_layout
+
+\begin_layout Standard
+Consider a system whose input and output are related by
+\begin_inset Formula 
+\begin{align*}
+u\left(t\right)= & \begin{cases}
+\frac{u^{2}\left(t\right)}{u\left(t-1\right)} & \text{if }u\left(t-1\right)\neq0\\
+0 & \text{if }u\left(t-1\right)=0
+\end{cases}
+\end{align*}
+
+\end_inset
+
+for all 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Show that the system satisfies the homogeneity property, but not the additivity
+ property.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Homogeneity:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+f\left(at\right)= & \frac{\left(au\right)^{2}\left(t\right)}{au\left(t-1\right)}\\
+= & \frac{au^{2}\left(t\right)}{u\left(t-1\right)}\\
+= & af\left(t\right)\\
+\therefore\, & \,\text{satisfies homoegeniety}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+b)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Additivity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+g\left(u_{1}+u_{2}\right)= & \frac{\left(u_{1}+u_{2}\right)^{2}\left(t\right)}{u\left(t-1\right)}\\
+= & \frac{\left(u_{1}+u_{2}\right)^{2}\left(t\right)}{\left(u_{1}+u_{2}\right)\left(t-1\right)}\\
+\neq & g\left(u_{1}\right)+g\left(u_{2}\right)\\
+\therefore\, & \,\text{does \emph{not} satisfy additivity}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Question 6
+\end_layout
+
+\begin_layout Standard
+Problem 2.14
+\end_layout
+
+\begin_layout Standard
+Consider a system described by 
+\begin_inset Formula 
+\begin{equation}
+\ddot{y}+2\dot{y}-3y=\dot{u}-u\label{eq:sys_eq_q_2_14}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What are the transfer function and the impulse response of the system?
+\end_layout
+
+\begin_layout Subsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Transfer function:
+\end_layout
+
+\begin_layout Standard
+To find the transfer function, we take the Laplace transform of Equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sys_eq_q_2_14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Formula 
+\begin{align*}
+s^{2}Y+2sY-3Y=\, & sU-U\\
+\left(s^{2}+2s-3\right)Y= & \left(s-1\right)U\\
+Y=\, & \frac{s-1}{\left(s^{2}+2s-3\right)}U\\
+Y=\, & \frac{s-1}{\left(s+3\right)\left(s-1\right)}U\\
+Y=\, & \frac{U}{s+3}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boxed{G\left(s\right)=\frac{Y\left(s\right)}{U\left(s\right)}=\frac{1}{s+3}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that since we're finding the transfer function all initial conditions
+ are assumed to be 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Impulse Response:
+\end_layout
+
+\begin_layout Standard
+For the impulse response, 
+\begin_inset Formula $u\left(t\right)=\delta\left(t\right)\overset{\mathcal{L}}{\rightarrow}U\left(s\right)=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+Y\left(s\right)= & \frac{U\left(s\right)}{s+3}\\
+= & \frac{1}{s+3}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and the inverse Laplace transform (
+\begin_inset Formula $\mathcal{L}^{-1}$
+\end_inset
+
+) is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boxed{y\left(t\right)=\begin{cases}
+e^{-3t} & \text{for }t\geq0\\
+0 & t<0
+\end{cases}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Question 7
+\end_layout
+
+\begin_layout Standard
+Problem 2.15
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\bar{y}\left(t\right)$
+\end_inset
+
+ be the unit-step response of a linear time-invariant system.
+ Show that the impulse response of the system equals 
+\begin_inset Formula $\frac{d\bar{y}\left(t\right)}{dt}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\bar{y}\left(t\right)= & \int_{0}^{t}g\left(\tau\right)u\left(t-\tau\right)d\tau\\
+= & \int_{0}^{t}g\left(\tau\right)d\tau
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boxed{\therefore\frac{d\bar{y}\left(t\right)}{dt}=g\left(t\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Question 8
+\end_layout
+
+\begin_layout Standard
+Problem 2.20
+\end_layout
+
+\begin_layout Standard
+The soft landing phase of a lunar module descending on the moon can be modeled
+ as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Soft-landing-phase"
+
+\end_inset
+
+.
+ The thrust generated is assumed to be proportional to 
+\begin_inset Formula $\dot{m}$
+\end_inset
+
+, where 
+\begin_inset Formula $m$
+\end_inset
+
+ is the mass of the module.
+ Then the system can be described by 
+\begin_inset Formula $m\ddot{y}=-k\dot{y}-mg$
+\end_inset
+
+, where 
+\begin_inset Formula $g$
+\end_inset
+
+ is the gravity constant on the lunar surface.
+ Define state variables of the system as 
+\begin_inset Formula $x_{1}=y$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}=\dot{y}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{3}=m$
+\end_inset
+
+, and 
+\begin_inset Formula $u=\dot{m}$
+\end_inset
+
+.
+ Find a state-space equation to describe the system.
+\end_layout
+
+\begin_layout Subsubsection*
+Solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{x}_{1}=\, & x_{2}\\
+\dot{x}_{2}= & -\frac{k}{m}u-g\\
+\dot{x}_{3}=\, & u
+\end{align*}
+
+\end_inset
+
+Note that the 
+\begin_inset Formula $g$
+\end_inset
+
+ term in the 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ state makes this system nonlinear and therefore it can't be written in
+ matrix form.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/prob2_20
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Soft landing phase of a lunar module descending on the moon
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Soft-landing-phase"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
