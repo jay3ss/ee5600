@@ -118,8 +118,8 @@ Question 1
 
 \begin_layout Standard
 The ability to balance actively is a key ingredient in the mobility of a
- device that hops and runs on the one springy leg, as shown in figure.
- The control of attitude of device uses a gyroscope and a feedback such
+ device that hops and runs on one springy leg.
+ The control of attitude of the device uses a gyroscope and a feedback such
  that 
 \begin_inset Formula $u\left(t\right)=Kx\left(t\right)$
 \end_inset
@@ -198,15 +198,139 @@ y\left(t\right)= & \left[\begin{array}{cc}
 
 \end_inset
 
-determine controllabilty and observability
+determine controllabilty and observability.
 \end_layout
 
 \begin_layout Subsection*
 Solution
 \end_layout
 
+\begin_layout Subsubsection*
+
+\series bold
+Observability
+\end_layout
+
 \begin_layout Standard
-asdf
+A system is 
+\emph on
+fully
+\emph default
+ observable iff 
+\begin_inset Formula $\left|P_{o}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{o}=\left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}$
+\end_inset
+
+ for a system of order two (such as the system presented in this question).
+ Therefore,
+\begin_inset Formula 
+\[
+\begin{aligned}P_{o}= & \left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}\\
+= & \left[\begin{array}{cc}
+0 & 2\\
+0 & -10
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{o}\right|= & \left|\begin{array}{cc}
+0 & 2\\
+0 & -10
+\end{array}\right|\\
+= & \,0
+\end{aligned}
+\]
+
+\end_inset
+
+Because 
+\begin_inset Formula $\left|P_{o}\right|=0$
+\end_inset
+
+, this system is 
+\series bold
+not 
+\emph on
+fully
+\emph default
+ observable
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Controllability
+\end_layout
+
+\begin_layout Standard
+A system is 
+\emph on
+fully
+\emph default
+ controllable iff 
+\begin_inset Formula $\left|P_{c}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{c}=\left[\begin{array}{cc}
+B & AB\end{array}\right]$
+\end_inset
+
+ for a system of order two (such as the system presented in this question).
+ Therefore,
+\begin_inset Formula 
+\[
+\begin{aligned}P_{c}= & \left[\begin{array}{cc}
+B & AB\end{array}\right]\\
+= & \left[\begin{array}{cc}
+0 & 2\\
+2 & -10
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{o}\right|= & \left|\begin{array}{cc}
+0 & 2\\
+2 & -10
+\end{array}\right|\\
+= & \,-4
+\end{aligned}
+\]
+
+\end_inset
+
+Because 
+\begin_inset Formula $\left|P_{o}\right|=-4\neq0$
+\end_inset
+
+, this system is 
+\series bold
+\emph on
+fully
+\emph default
+ controllable
+\series default
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -243,7 +367,130 @@ Solution
 \end_layout
 
 \begin_layout Standard
-alsdkfj
+
+\series bold
+Observability
+\end_layout
+
+\begin_layout Standard
+A system is 
+\emph on
+fully
+\emph default
+ observable iff 
+\begin_inset Formula $\left|P_{o}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{o}=\left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}$
+\end_inset
+
+ for a system of order two (such as the system presented in this question).
+ Therefore,
+\begin_inset Formula 
+\[
+\begin{aligned}P_{o}= & \left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}\\
+= & \left[\begin{array}{cc}
+0 & 1\\
+-1 & 0
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{o}\right|= & \left|\begin{array}{cc}
+0 & 1\\
+-1 & 0
+\end{array}\right|\\
+= & 1
+\end{aligned}
+\]
+
+\end_inset
+
+Because 
+\begin_inset Formula $\left|P_{o}\right|=1\neq0$
+\end_inset
+
+, this system is 
+\series bold
+\emph on
+fully
+\emph default
+ observable
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Controllability
+\end_layout
+
+\begin_layout Standard
+A system is 
+\emph on
+fully
+\emph default
+ controllable iff 
+\begin_inset Formula $\left|P_{c}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{c}=\left[\begin{array}{cc}
+B & AB\end{array}\right]$
+\end_inset
+
+ for a system of order two (such as the system presented in this question).
+ Therefore,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}P_{c}= & \left[\begin{array}{cc}
+B & AB\end{array}\right]\\
+= & \left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{c}\right|= & \left|\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right|\\
+= & \,1
+\end{aligned}
+\]
+
+\end_inset
+
+Because 
+\begin_inset Formula $\left|P_{c}\right|=1\neq0$
+\end_inset
+
+, this system is 
+\series bold
+\emph on
+fully
+\emph default
+ controllable
+\series default
+.
 \begin_inset Newpage newpage
 \end_inset
 
@@ -287,7 +534,7 @@ We want to place the closed loop poles at
 \end_inset
 
 .
- Determine the required state variable feedback using any method (Ackerman's
+ Determine the required state variable feedback using any method (Ackermann's
  formula or coefficient comparison).
  Assume that complete state vector is available for feedback.
 \end_layout
@@ -297,7 +544,196 @@ Solution
 \end_layout
 
 \begin_layout Standard
-as;ldfkj
+Let's first check that the system is controllable.
+ A system is 
+\emph on
+fully
+\emph default
+ controllable iff 
+\begin_inset Formula $\left|P_{c}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{c}=\left[\begin{array}{cc}
+B & AB\end{array}\right]$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{c}\right|= & \left|\left[\begin{array}{cc}
+B & AB\end{array}\right]\right|\\
+= & \left|\left[\begin{array}{cc}
+1 & -4\\
+0 & 1
+\end{array}\right]\right|\\
+= & \,1\\
+\neq & \,0\;\therefore\;\text{fully controllable.}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, let's use Ackermann's formula to determine the state variable feedback.
+ Ackermann's formula (for a second-order system) is given by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ackermann-eq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{equation}
+K=\left[\begin{array}{cc}
+0 & 1\end{array}\right]P_{c}^{-1}p\left(A\right)\label{eq:ackermann-eq}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, we need to find 
+\begin_inset Formula $p\left(\lambda\right)$
+\end_inset
+
+ which will be used to construct 
+\begin_inset Formula $p\left(A\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\left(\lambda+1+j3\right)\left(\lambda+1-j3\right)=\, & \lambda^{2}+2\lambda+10\\
+=\, & p\left(\lambda\right)
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Time to find 
+\begin_inset Formula $p\left(A\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}p\left(A\right)= & A^{2}+2A+10\mathbb{I}\\
+= & \left[\begin{array}{cc}
+16 & 0\\
+-5 & 1
+\end{array}\right]+2\left[\begin{array}{cc}
+-4 & 0\\
+1 & -1
+\end{array}\right]+10\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]\\
+= & \left[\begin{array}{cc}
+18 & 0\\
+-3 & 9
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and 
+\begin_inset Formula $P_{c}^{-1}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\begin{aligned}P_{c}^{-1}= & \frac{\text{adj}\left(P_{c}\right)}{\text{det}\left(P_{c}\right)}\\
+= & \frac{1}{1}\left[\begin{array}{cc}
+1 & 4\\
+0 & 1
+\end{array}\right]\\
+= & \left[\begin{array}{cc}
+1 & 4\\
+0 & 1
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now find 
+\begin_inset Formula $K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}K= & \left[\begin{array}{cc}
+0 & 1\end{array}\right]P_{c}^{-1}p\left(A\right)\\
+= & \left[\begin{array}{cc}
+0 & 1\end{array}\right]\left[\begin{array}{cc}
+1 & 4\\
+0 & 1
+\end{array}\right]\left[\begin{array}{cc}
+18 & 0\\
+-3 & 9
+\end{array}\right]\\
+= & \left[\begin{array}{cc}
+30 & 36\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, the state variable feedback is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boxed{K=\left[\begin{array}{cc}
+30 & 36\end{array}\right]}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -358,7 +794,7 @@ Plot the response of the estimations error
 
  with initial estimation error 
 \begin_inset Formula $e\left(0\right)=\left[\begin{array}{cc}
-1 & 0\end{array}\right]'$
+1 & 0\end{array}\right]^{T}$
 \end_inset
 
  using Matlab and attach your result.
@@ -403,6 +839,29 @@ Determine observer gains to place the observer poles at
 
 \begin_layout Subsection*
 Solution
+\end_layout
+
+\begin_layout Standard
+If we let 
+\begin_inset Formula $U\left(t\right)=-KX\left(t\right)$
+\end_inset
+
+, we arrive at
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\dot{X}\left(t\right)= & AX\left(t\right)+BU\left(t\right)\\
+= & AX\left(t\right)+B\left(-KX\left(t\right)\right)\\
+= & AX\left(t\right)-BKX\left(t\right)\\
+= & \left(A-BK\right)X\left(t\right)
+\end{aligned}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
