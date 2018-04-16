@@ -227,3 +227,6 @@ TSWLatexianTemp*
 
 # ignore .ini files created by gedit
 *.ini
+
+# ignore temporary LyX files
+\#*#
