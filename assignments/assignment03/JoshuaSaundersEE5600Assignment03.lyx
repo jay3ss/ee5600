@@ -7,6 +7,7 @@
 \textclass paper
 \begin_preamble
 \renewcommand{\labelenumi}{\alph{enumi})}
+\usepackage{matlab-prettifier}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -31,6 +32,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement h
 \paperfontsize default
 \spacing single
 \use_hyperref true
@@ -87,6 +89,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\listings_params "style={Matlab-editor}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -134,7 +137,7 @@ K= & \left[\begin{array}{cc}
 -k & 0\\
 0 & -2k
 \end{array}\right]\,\text{and}\\
-\dot{x}\left(t\right)= & Ax\left(t\right)+Bu\left(t\right)
+\dot{X}\left(t\right)= & AX\left(t\right)+BU\left(t\right)
 \end{align*}
 
 \end_inset
@@ -166,7 +169,160 @@ Solution
 \end_layout
 
 \begin_layout Standard
-asdf
+The desired characteristic equation is given below in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:q1-desired-char-eq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{aligned}\lambda^{2}+2ζ\omega_{n}\lambda+\omega_{2}^{2}= & 0\\
+\lambda^{2}+2\omega_{n}\lambda+\omega_{2}^{2}= & 0
+\end{aligned}
+\label{eq:q1-desired-char-eq}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $U\left(t\right)=KX\left(t\right)$
+\end_inset
+
+, then we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\dot{X}\left(t\right)= & AX\left(t\right)+BU\left(t\right)\\
+= & AX\left(t\right)+B\left(KX\left(t\right)\right)\\
+= & AX\left(t\right)+BKX\left(t\right)\\
+= & \left(A+BK\right)X\left(t\right)
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\left|\lambda\mathbb{I}-\left(A+BK\right)\right|= & \left|\left[\begin{array}{cc}
+\lambda & 0\\
+0 & \lambda
+\end{array}\right]-\left(\left[\begin{array}{cc}
+0 & 1\\
+-1 & 0
+\end{array}\right]+\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]\left[\begin{array}{cc}
+-k & 0\\
+0 & -2k
+\end{array}\right]\right)\right|\\
+= & \left|\left[\begin{array}{cc}
+\lambda+k & 1\\
+-1 & \lambda+2k
+\end{array}\right]\right|\\
+= & \left(\lambda+k\right)\left(\lambda+2k\right)+1\\
+= & \lambda^{2}+3k\lambda+\left(2k^{2}+1\right)\\
+= & 0
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We'll use matching with the desired characteristic equation, Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:q1-desired-char-eq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, to determine 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+\begin{aligned}\lambda^{2}+2\omega_{n}\lambda+\omega_{2}^{2}= & \lambda^{2}+3k\lambda+\left(2k^{2}+1\right)\\
+2\omega_{n}\lambda+\omega_{2}^{2}= & 3k\lambda+\left(2k^{2}+1\right)
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Which gives
+\begin_inset Formula 
+\[
+\begin{aligned}2\omega_{n}= & \,3k\\
+\omega_{n}=\, & \frac{3}{2}k
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\begin_inset Formula 
+\[
+\begin{aligned}\omega_{n}^{2}= & \,2k^{2}+1\\
+\left(\frac{3}{2}k\right)^{2}= & \,2k^{2}+1\\
+\frac{1}{4}k^{2}= & \,1\\
+k= & \pm2
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $k$
+\end_inset
+
+ must be positive otherwise the system will be unstable.
+ Therefore,
+\begin_inset Formula 
+\[
+\boxed{k=2}
+\]
+
+\end_inset
+
+
 \begin_inset Newpage newpage
 \end_inset
 
@@ -582,7 +738,7 @@ Now, let's use Ackermann's formula to determine the state variable feedback.
  Ackermann's formula (for a second-order system) is given by Equation 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:ackermann-eq"
+reference "eq:ackermann-eq-ctrb"
 plural "false"
 caps "false"
 noprefix "false"
@@ -593,7 +749,7 @@ noprefix "false"
 \begin_inset Formula 
 \begin{equation}
 K=\left[\begin{array}{cc}
-0 & 1\end{array}\right]P_{c}^{-1}p\left(A\right)\label{eq:ackermann-eq}
+0 & 1\end{array}\right]P_{c}^{-1}p\left(A\right)\label{eq:ackermann-eq-ctrb}
 \end{equation}
 
 \end_inset
@@ -669,12 +825,12 @@ and
 
 \begin_inset Formula 
 \[
-\begin{aligned}P_{c}^{-1}= & \frac{\text{adj}\left(P_{c}\right)}{\text{det}\left(P_{c}\right)}\\
-= & \frac{1}{1}\left[\begin{array}{cc}
+\begin{aligned}P_{c}^{-1}= & \,\frac{1}{\text{det}\left(P_{c}\right)}\text{adj}\left(P_{c}\right)\\
+= & \,\frac{1}{1}\left[\begin{array}{cc}
 1 & 4\\
 0 & 1
 \end{array}\right]\\
-= & \left[\begin{array}{cc}
+= & \,\left[\begin{array}{cc}
 1 & 4\\
 0 & 1
 \end{array}\right]
@@ -760,7 +916,7 @@ Where
 \[
 \begin{aligned}A= & \left[\begin{array}{cc}
 0 & 1\\
--1 & 0
+-5 & -10
 \end{array}\right]\text{; }B=\left[\begin{array}{c}
 0\\
 1
@@ -804,8 +960,238 @@ Plot the response of the estimations error
 Solution
 \end_layout
 
+\begin_layout Subsubsection*
+Observability
+\end_layout
+
 \begin_layout Standard
-a;lskdjf
+To test the observability of a system, we check if 
+\begin_inset Formula $\left|P_{o}\right|\neq0$
+\end_inset
+
+ where 
+\begin_inset Formula $P_{o}=\left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}$
+\end_inset
+
+ for a two-state system.
+\begin_inset Formula 
+\[
+\begin{aligned}\left|P_{o}\right|= & \left|\left[\begin{array}{cc}
+C & CA\end{array}\right]^{T}\right|\\
+= & \left|\left[\begin{array}{cc}
+1 & -4\\
+21 & 44
+\end{array}\right]\right|\\
+= & \,128\\
+\neq & \,0\;\therefore\textbf{ fully observable}
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Full-State Observer
+\end_layout
+
+\begin_layout Standard
+Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ackermann-eq-obs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ gives the Ackermann equation for observability.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{equation}
+L=q\left(A\right)P_{o}^{-1}\left[\begin{array}{cc}
+0 & 1\end{array}\right]^{T}\label{eq:ackermann-eq-obs}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, we find 
+\begin_inset Formula $P_{o}^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}P_{o}^{-1}= & \,\frac{1}{\text{det}\left(P_{o}\right)}\text{adj}\left(P_{o}\right)\\
+= & \,\frac{1}{128}\left[\begin{array}{cc}
+44 & 4\\
+-21 & 1
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next, find 
+\begin_inset Formula $q\left(\lambda\right)$
+\end_inset
+
+ which will then be used to construct 
+\begin_inset Formula $q\left(A\right)$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+\left(\lambda+1\right)^{2}=\lambda^{2}+2\lambda+1=q\left(\lambda\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}q\left(A\right)= & A^{2}+2A+\mathbb{I}\\
+= & \left[\begin{array}{cc}
+0 & 1\\
+-5 & -10
+\end{array}\right]^{2}+2\left[\begin{array}{cc}
+0 & 1\\
+-5 & -10
+\end{array}\right]+\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]\\
+= & \left[\begin{array}{cc}
+-16 & -28\\
+35 & 61
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Putting it all together
+\begin_inset Formula 
+\begin{align*}
+L= & q\left(A\right)P_{o}^{-1}\left[\begin{array}{cc}
+0 & 1\end{array}\right]^{T}\\
+= & \left[\begin{array}{cc}
+-16 & -28\\
+35 & 61
+\end{array}\right]\frac{1}{128}\left[\begin{array}{cc}
+44 & 4\\
+-21 & 1
+\end{array}\right]\left[\begin{array}{c}
+0\\
+1
+\end{array}\right]\\
+= & \left[\begin{array}{c}
+-0.71875\\
+1.570131
+\end{array}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, the observer gains are 
+\begin_inset Formula 
+\[
+\boxed{L=\left[\begin{array}{c}
+-0.71875\\
+1.570131
+\end{array}\right]}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+MATLAB Plot
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q5_error_plot.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Error plot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The code for the plot is located in the Appendix.
 \begin_inset Newpage newpage
 \end_inset
 
@@ -823,8 +1209,15 @@ A system is described by the equations
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\begin{aligned}\dot{X}\left(t\right)=\, & AX\left(t\right)+BU\left(t\right)\\
-Y\left(t\right)=\, & CX\left(t\right)+DU\left(t\right)
+\begin{aligned}\dot{X}\left(t\right)=\, & \left[\begin{array}{cc}
+1 & 0\\
+-5 & -20
+\end{array}\right]X\left(t\right)+\left[\begin{array}{c}
+100\\
+0
+\end{array}\right]U\left(t\right)\\
+Y\left(t\right)=\, & \left[\begin{array}{cc}
+1 & 0\end{array}\right]X\left(t\right)
 \end{aligned}
 \]
 
@@ -842,20 +1235,17 @@ Solution
 \end_layout
 
 \begin_layout Standard
-If we let 
-\begin_inset Formula $U\left(t\right)=-KX\left(t\right)$
-\end_inset
-
-, we arrive at
-\end_layout
-
-\begin_layout Standard
+Before constructing an observer, we need to make sure that our system is
+ fully observable.
+ 
 \begin_inset Formula 
 \[
-\begin{aligned}\dot{X}\left(t\right)= & AX\left(t\right)+BU\left(t\right)\\
-= & AX\left(t\right)+B\left(-KX\left(t\right)\right)\\
-= & AX\left(t\right)-BKX\left(t\right)\\
-= & \left(A-BK\right)X\left(t\right)
+\begin{aligned}\left|P_{o}\right|= & \left|\begin{array}{cc}
+100 & 100\\
+0 & -500
+\end{array}\right|\\
+= & -50000\\
+\neq & \,0\;\therefore\text{ fully observable}
 \end{aligned}
 \]
 
@@ -865,7 +1255,400 @@ If we let
 \end_layout
 
 \begin_layout Standard
-as;dlkf
+Now that we know that our system is observable, we can construct our observer
+ using Ackermann's formula for observability for a two-state system, Equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ackermann-eq-obs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}P_{o}^{-1}= & \,\frac{1}{\text{det}\left(P_{o}\right)}\text{adj}\left(P_{o}\right)\\
+= & \,\frac{1}{-50000}\left[\begin{array}{cc}
+-500 & -100\\
+0 & 100
+\end{array}\right]\\
+= & \,\left[\begin{array}{cc}
+0.01 & 0.02\\
+0 & -0.2
+\end{array}\right]
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let's find 
+\begin_inset Formula $q\left(\lambda\right)$
+\end_inset
+
+, which will be used to construct 
+\begin_inset Formula $q\left(A\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\left(\lambda+5\right)^{2}= & \lambda^{2}+10\lambda+25=q\left(\lambda\right)\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, 
+\begin_inset Formula 
+\begin{align*}
+q\left(A\right)= & A^{2}+10A+25\mathbb{I}\\
+= & \left[\begin{array}{cc}
+1 & 0\\
+95 & 400
+\end{array}\right]+10\left[\begin{array}{cc}
+1 & 0\\
+-5 & -20
+\end{array}\right]+25\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]\\
+= & \left[\begin{array}{cc}
+36 & 0\\
+45 & 225
+\end{array}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And finally
+\begin_inset Formula 
+\begin{align*}
+L= & q\left(A\right)P_{o}^{-1}\left[\begin{array}{cc}
+0 & 1\end{array}\right]^{T}\\
+= & \left[\begin{array}{cc}
+36 & 0\\
+45 & 225
+\end{array}\right]\left[\begin{array}{cc}
+0.01 & 0.02\\
+0 & -0.2
+\end{array}\right]\left[\begin{array}{c}
+0\\
+1
+\end{array}\right]\\
+= & \left[\begin{array}{c}
+0.072\\
+-0.36
+\end{array}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, the observer gains are 
+\begin_inset Formula 
+\[
+\boxed{L=\left[\begin{array}{c}
+0.072\\
+-0.36
+\end{array}\right]}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+\begin_inset Newpage newpage
+\end_inset
+
+Appendix
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+% Standard state-space matrices
+\end_layout
+
+\begin_layout Plain Layout
+A = [
+\end_layout
+
+\begin_layout Plain Layout
+ 1,  4; 
+\end_layout
+
+\begin_layout Plain Layout
+-5, -10];
+\end_layout
+
+\begin_layout Plain Layout
+B = [0; 1];
+\end_layout
+
+\begin_layout Plain Layout
+C = [1, -4];
+\end_layout
+
+\begin_layout Plain Layout
+D = [0];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+poles = [-1, -1];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+% Need to use acker() because the poles are at the same location
+\end_layout
+
+\begin_layout Plain Layout
+% We'll use the fact that the controllability of the dual of the system
+\end_layout
+
+\begin_layout Plain Layout
+% is the same as the observability of the original system
+\end_layout
+
+\begin_layout Plain Layout
+L = acker(A' ,C',poles)';
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+dt = 0.001;
+\end_layout
+
+\begin_layout Plain Layout
+total_time = 10;
+\end_layout
+
+\begin_layout Plain Layout
+t = 0:dt:total_time;
+\end_layout
+
+\begin_layout Plain Layout
+num_its = length(t);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+U = 1e-3; % input as a step function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+X = [1; 1];       % initial states
+\end_layout
+
+\begin_layout Plain Layout
+X_hat = [0; 0];   % initial estimate of states
+\end_layout
+
+\begin_layout Plain Layout
+e0 = X - X_hat;   % initial error
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+% Setup vectors
+\end_layout
+
+\begin_layout Plain Layout
+X_vec = X;
+\end_layout
+
+\begin_layout Plain Layout
+X_hat_vec = X_hat;
+\end_layout
+
+\begin_layout Plain Layout
+e_vec = e0;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+for i = 1:num_its-1;
+\end_layout
+
+\begin_layout Plain Layout
+  Y = C*X + D*U;
+\end_layout
+
+\begin_layout Plain Layout
+  Y_hat = C*X_hat + D*U;
+\end_layout
+
+\begin_layout Plain Layout
+  
+\end_layout
+
+\begin_layout Plain Layout
+  dX = A*X + B*U;
+\end_layout
+
+\begin_layout Plain Layout
+  X = X + dX*dt;
+\end_layout
+
+\begin_layout Plain Layout
+  
+\end_layout
+
+\begin_layout Plain Layout
+  dX_hat = A*X_hat + B*U + L*(Y - Y_hat);
+\end_layout
+
+\begin_layout Plain Layout
+  X_hat = X_hat + dX_hat*dt;
+\end_layout
+
+\begin_layout Plain Layout
+  
+\end_layout
+
+\begin_layout Plain Layout
+  e = X - X_hat;
+\end_layout
+
+\begin_layout Plain Layout
+  
+\end_layout
+
+\begin_layout Plain Layout
+  X_vec = [X_vec, X];
+\end_layout
+
+\begin_layout Plain Layout
+  X_hat_vec = [X_hat_vec, X_hat];
+\end_layout
+
+\begin_layout Plain Layout
+  e_vec = [e_vec, e];  
+\end_layout
+
+\begin_layout Plain Layout
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+figure;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+plot(t, e_vec(1,:), 'LineWidth', 2);
+\end_layout
+
+\begin_layout Plain Layout
+hold on;
+\end_layout
+
+\begin_layout Plain Layout
+plot(t, e_vec(2,:), 'LineWidth', 2);
+\end_layout
+
+\begin_layout Plain Layout
+title('Error plot', 'fontsize', 20)
+\end_layout
+
+\begin_layout Plain Layout
+xlabel('time (s)', 'fontsize', 16)
+\end_layout
+
+\begin_layout Plain Layout
+ylabel('e(t)', 'fontsize', 16)
+\end_layout
+
+\begin_layout Plain Layout
+leg = legend('e_{1}(t)', 'e_{2}(t)')
+\end_layout
+
+\begin_layout Plain Layout
+set (leg, "fontsize", 16);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+% References:
+\end_layout
+
+\begin_layout Plain Layout
+% [1]: http://www.eecs.tufts.edu/~khan/Courses/Spring2013/EE194/Lecs/Lec6and7.pdf
+\end_layout
+
+\begin_layout Plain Layout
+% [2]: http://ctms.engin.umich.edu/CTMS/index.php?example=Introduction&section=Contr
+olStateSpace#23
+\end_layout
+
+\begin_layout Plain Layout
+% [3]: http://cse.lab.imtlucca.it/~bemporad/teaching/ac/pdf/06b-estimator.pdf
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
