@@ -1241,11 +1241,10 @@ Before constructing an observer, we need to make sure that our system is
 \begin_inset Formula 
 \[
 \begin{aligned}\left|P_{o}\right|= & \left|\begin{array}{cc}
-100 & 100\\
-0 & -500
+1 & 0\\
+1 & 0
 \end{array}\right|\\
-= & -50000\\
-\neq & \,0\;\therefore\text{ fully observable}
+= & \,0\;\therefore\text{ not fully observable}
 \end{aligned}
 \]
 
@@ -1255,130 +1254,11 @@ Before constructing an observer, we need to make sure that our system is
 \end_layout
 
 \begin_layout Standard
-Now that we know that our system is observable, we can construct our observer
- using Ackermann's formula for observability for a two-state system, Equation
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:ackermann-eq-obs"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
+Because the system is not fully observable, we 
+\series bold
+cannot find the observer gains
+\series default
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\begin{aligned}P_{o}^{-1}= & \,\frac{1}{\text{det}\left(P_{o}\right)}\text{adj}\left(P_{o}\right)\\
-= & \,\frac{1}{-50000}\left[\begin{array}{cc}
--500 & -100\\
-0 & 100
-\end{array}\right]\\
-= & \,\left[\begin{array}{cc}
-0.01 & 0.02\\
-0 & -0.2
-\end{array}\right]
-\end{aligned}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Let's find 
-\begin_inset Formula $q\left(\lambda\right)$
-\end_inset
-
-, which will be used to construct 
-\begin_inset Formula $q\left(A\right)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\begin{aligned}\left(\lambda+5\right)^{2}= & \lambda^{2}+10\lambda+25=q\left(\lambda\right)\end{aligned}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Therefore, 
-\begin_inset Formula 
-\begin{align*}
-q\left(A\right)= & A^{2}+10A+25\mathbb{I}\\
-= & \left[\begin{array}{cc}
-1 & 0\\
-95 & 400
-\end{array}\right]+10\left[\begin{array}{cc}
-1 & 0\\
--5 & -20
-\end{array}\right]+25\left[\begin{array}{cc}
-1 & 0\\
-0 & 1
-\end{array}\right]\\
-= & \left[\begin{array}{cc}
-36 & 0\\
-45 & 225
-\end{array}\right]
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-And finally
-\begin_inset Formula 
-\begin{align*}
-L= & q\left(A\right)P_{o}^{-1}\left[\begin{array}{cc}
-0 & 1\end{array}\right]^{T}\\
-= & \left[\begin{array}{cc}
-36 & 0\\
-45 & 225
-\end{array}\right]\left[\begin{array}{cc}
-0.01 & 0.02\\
-0 & -0.2
-\end{array}\right]\left[\begin{array}{c}
-0\\
-1
-\end{array}\right]\\
-= & \left[\begin{array}{c}
-0.072\\
--0.36
-\end{array}\right]
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Therefore, the observer gains are 
-\begin_inset Formula 
-\[
-\boxed{L=\left[\begin{array}{c}
-0.072\\
--0.36
-\end{array}\right]}
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Part*
